@@ -1,4 +1,5 @@
 class Routesname {
+  static const String Splashscreen = "/Splashscreen";
   static const String Welcomepage = "/Welcomepage";
   static const String Login_page = "/Loginpage";
   static const String OTPVerificationScreen = "/OTPVerificationScreen";
