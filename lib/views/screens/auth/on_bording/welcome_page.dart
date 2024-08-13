@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kitchen_app/main.dart';
 import 'package:kitchen_app/res/config/App_services/app_services.dart';
+import 'package:kitchen_app/view_model/controllers/Authcontrollers/auth_controllers.dart';
 import 'package:kitchen_app/view_model/translations.dart';
 import 'package:kitchen_app/views/components/buttons/primary_button.dart';
+import 'package:kitchen_app/views/screens/auth/auth.dart';
 
 import '../../../../res/config/routes/routs_name.dart';
 
@@ -17,6 +19,20 @@ class Welcome_Page extends StatefulWidget {
 }
 
 class _Welcome_PageState extends State<Welcome_Page> {
+  void initState() {
+    initalState();
+    super.initState();
+  }
+
+  initalState() async {
+    Future.delayed(Duration(milliseconds: 300), () async {
+      await Get.find<AuthControllers>().Reloginaccount();
+    });
+
+    // await Future.delayed(
+    //     Duration(seconds: 2), () => Get.toNamed(Routesname.Login_page));
+  }
+
   ///Helpers
   var data = alldataManager;
   @override
@@ -59,7 +75,7 @@ class _Welcome_PageState extends State<Welcome_Page> {
                   title: LanguageConsts.gets.tr,
                   isExpanded: true,
                   onPressed: () {
-                    Get.toNamed(Routesname.Login_page);
+                    // Get.toNamed(Routesname.Login_page);
                   }),
             ],
           ),
@@ -72,7 +88,8 @@ class _Welcome_PageState extends State<Welcome_Page> {
                 text: LanguageConsts.login.tr,
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Get.toNamed(Routesname.Login_page);
+                    // print("dfghjkl;==============================");
+                    Get.to(LoginPage());
                   },
                 style: data.gettexttheme.fs16_regular
                     .copyWith(color: data.getcolor.primaryColor))

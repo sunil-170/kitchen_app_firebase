@@ -557,7 +557,6 @@ class languagetype {
     LanguageConsts.TiffinS: 'टिफ़िन सेवा',
     LanguageConsts.EmailA: 'मेल पता',
     LanguageConsts.example: 'example@.com',
-    LanguageConsts.example: 'example@.com',
 
     /// Chat Screen *************///
   };
