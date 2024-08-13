@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: false,
       designSize: Size(AppConfig.screenWidth, AppConfig.screenHeight),
       child: GetMaterialApp(
-        initialRoute: Routesname.Welcomepage,
+        initialRoute: Routesname.Splashscreen,
         translations: Languages(),
         locale: Languages.locale,
         fallbackLocale: Languages.fallbacklocle,

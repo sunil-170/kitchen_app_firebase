@@ -20,20 +20,6 @@ class Welcome_Page extends StatefulWidget {
 }
 
 class _Welcome_PageState extends State<Welcome_Page> {
-  void initState() {
-    initalState();
-    super.initState();
-  }
-
-  initalState() async {
-    Future.delayed(Duration(milliseconds: 300), () async {
-      await Get.find<AuthControllers>().Reloginaccount();
-    });
-
-    // await Future.delayed(
-    //     Duration(seconds: 2), () => Get.toNamed(Routesname.Login_page));
-  }
-
   ///Helpers
   var data = alldataManager;
   @override
@@ -76,7 +62,7 @@ class _Welcome_PageState extends State<Welcome_Page> {
                   title: LanguageConsts.gets.tr,
                   isExpanded: true,
                   onPressed: () {
-                    // Get.toNamed(Routesname.Login_page);
+                    Get.toNamed(Routesname.Login_page);
                   }),
             ],
           ),

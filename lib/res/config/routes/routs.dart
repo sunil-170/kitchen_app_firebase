@@ -11,6 +11,7 @@ import 'package:kitchen_app/views/screens/Menuscreen/AddmealView.dart';
 import 'package:kitchen_app/views/screens/Menuscreen/ViewItemdetailsView.dart';
 import 'package:kitchen_app/views/screens/PricvacyPolicy/privacypolicy.dart';
 import 'package:kitchen_app/views/screens/Transaction/TransactionScreen.dart';
+import 'package:kitchen_app/views/screens/auth/on_bording/splash_%20screen.dart';
 import 'package:kitchen_app/views/screens/chat/chat.dart';
 import 'package:kitchen_app/views/screens/chat/chat_list.dart';
 import 'package:kitchen_app/views/screens/customers_page/CustomerDetailScreen.dart';
@@ -24,6 +25,10 @@ import '../../../views/screens/screens.dart';
 class Routes {
   static List<GetPage> zgenerateRoutes() {
     return [
+      GetPage(
+        name: Routesname.Splashscreen,
+        page: () => Splashscreen(),
+      ),
       GetPage(
         name: Routesname.Welcomepage,
         page: () => Welcome_Page(),
