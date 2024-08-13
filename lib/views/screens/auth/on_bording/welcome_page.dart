@@ -8,9 +8,6 @@ import 'package:kitchen_app/view_model/controllers/Authcontrollers/auth_controll
 import 'package:kitchen_app/view_model/translations.dart';
 import 'package:kitchen_app/views/components/buttons/primary_button.dart';
 import 'package:kitchen_app/views/screens/auth/auth.dart';
-
-import '../../../../res/config/routes/routs_name.dart';
-
 class Welcome_Page extends StatefulWidget {
   const Welcome_Page({super.key});
 
