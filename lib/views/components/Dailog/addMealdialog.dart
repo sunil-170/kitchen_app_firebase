@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:kitchen_app/main.dart';
+import 'package:kitchen_app/model/TodayMealModal.dart';
 import 'package:kitchen_app/res/config/App_services/app_services.dart';
 import 'package:kitchen_app/res/utils/primary_decorations.dart';
+import 'package:kitchen_app/view_model/TodayMealController/Todaymealcontroller.dart';
 import 'package:kitchen_app/views/components/buttons/primary_button.dart';
 import 'package:kitchen_app/views/components/widgets/primary_container.dart';
 
@@ -20,6 +23,8 @@ class _AddMealDialogState extends State<AddMealDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<Todaymealcontroller>();
+
     ///-----------------Helpers-------------------------------
     var style = alldataManager;
     return Dialog(
@@ -107,7 +112,14 @@ class _AddMealDialogState extends State<AddMealDialog> {
                   foregroundColor: style.getcolor.white,
                   backgroundColor: style.getcolor.primaryColor,
                   title: "Save",
-                  onPressed: () {}),
+                  onPressed: () {
+                    /// save meal type function here************///
+                    // controller.setmeal(AddMealModal(meals: [
+                    //   MealsModal(
+                    //     meal_type: selectmeal,
+                    //   )
+                    // ]));
+                  }),
             ),
           ],
         ),

@@ -43,7 +43,7 @@ class _AddMenuViewState extends State<AddMenuView> {
     LanguageConsts.fri.tr,
     LanguageConsts.sat.tr
   ];
- 
+
   String isMealaddons = "";
   RxString isIncluded = "".obs;
   String isBreakfast = "";

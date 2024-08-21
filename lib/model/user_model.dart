@@ -3,7 +3,6 @@ class user_model {
   String? phone_number;
   String? email;
   String? gender;
-
   String? state;
   String? city;
   String? uid;

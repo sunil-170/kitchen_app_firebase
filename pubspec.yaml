@@ -46,10 +46,6 @@ dependencies:
   flutter_svg: ^2.0.10+1
   percent_indicator: ^4.2.3
   dotted_line: ^3.2.2
-<<<<<<< HEAD
-=======
-
->>>>>>> 0cbe868472ab526eb903a2e0e79f2e64bf2a36dd
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
   firebase_database: ^10.4.0

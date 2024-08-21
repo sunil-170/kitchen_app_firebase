@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kitchen_app/main.dart';
+import 'package:kitchen_app/model/TodayMealModal.dart';
 import 'package:kitchen_app/res/config/App_services/app_services.dart';
-import 'package:kitchen_app/res/config/extensions/string_extensions.dart';
 import 'package:kitchen_app/singleton/Alldatamanager.dart';
-import 'package:kitchen_app/view_model/enums/enums.dart';
+import 'package:kitchen_app/view_model/TodayMealController/Todaymealcontroller.dart';
 import 'package:kitchen_app/view_model/translations.dart';
 import 'package:kitchen_app/views/components/Dailog/addMealdialog.dart';
 import 'package:kitchen_app/views/components/buttons/primary_button.dart';
@@ -26,15 +26,25 @@ class TodayMealView extends StatefulWidget {
 
 class _TodayMealViewState extends State<TodayMealView> {
   final style = alldataManager;
-  String selectcategory = "";
+  var selectcategory = "Brekfast";
   var initial_value = "";
-  List<String> category_type = [
-    ...MealCategory.values.map((e) => e.name.toTitleCase())
-  ];
+  // List<String> category_type = [
+  //   ...MealCategory.values.map((e) => e.name.toTitleCase())
+  // ];
+  List category_type = ["Brekfast", "Lunch", "Dinner"];
   List<String> meal_cat = [LanguageConsts.veg.tr, LanguageConsts.Nonvveg.tr];
 
   @override
   Widget build(BuildContext context) {
+    print(selectcategory);
+    print(initial_value);
+
+    /// meal controller ///
+    Get.put(Todaymealcontroller);
+    // var data = Todaymealcontroller();
+    // final dd = data.meallist.map((e) => e.date);
+    // print(data);
+    // print(dd);
     return Scaffold(
       appBar: PrimaryAppBar(
         titleText: "Today's Meal",
@@ -81,24 +91,24 @@ class _TodayMealViewState extends State<TodayMealView> {
               hint: Text("Select Category"),
               isExpanded: true,
               isDense: true,
-              value: selectcategory.isEmpty ? null : selectcategory,
+              value: selectcategory,
               style: style.gettexttheme.fs14_regular
                   .copyWith(color: style.getcolor.gray),
               icon: const Icon(
                 Icons.keyboard_arrow_down,
                 color: Colors.grey,
               ),
-              items: category_type.map((String item) {
+              items: category_type.map((item) {
                 return DropdownMenuItem<String>(
                   value: item,
                   child: Text(
-                    item,
+                    item.toString(),
                     style: style.gettexttheme.fs14_regular
                         .copyWith(color: style.getcolor.gray),
                   ),
                 );
               }).toList(),
-              onChanged: (newValue) {
+              onChanged: (String? newValue) {
                 setState(() {
                   selectcategory = newValue!;
                 });
@@ -196,8 +206,11 @@ class _TodayMealViewState extends State<TodayMealView> {
               child: PrimaryButton(
                   backgroundColor: style.getcolor.green,
                   title: LanguageConsts.uploadD.tr,
-                  onPressed: () {
-                    Get.to(TodayMealView());
+                  onPressed: () async {
+                    await Todaymealcontroller().addmealfun(mealdata());
+
+                    /// Upload Meal Button ************** ///
+                    // Get.to(TodayMealView());
                   }),
             ),
           ],
@@ -205,6 +218,32 @@ class _TodayMealViewState extends State<TodayMealView> {
       ])),
     );
   }
+
+  Map<String, dynamic> mealdata() {
+    return AddMealModal(date: DateTime.now().toIso8601String(), meals: [
+      MealsModal(
+          available: true,
+          price: 30,
+          mealId: Myfunctions.generateId(),
+          meal_name: initial_value,
+          meal_type: selectcategory.toString())
+    ]).toJson();
+  }
+
+  // validate_function(Todaymealcontroller controller) async {
+  //   controller
+  //       .setmeal(AddMealModal(date: DateTime.now().toIso8601String(), meals: [
+  // MealsModal(
+  //     available: true,
+  //     price: 30,
+  //     mealId: Myfunctions.generateId(),
+  //     meal_name: initial_value,
+  //     meal_type: selectcategory.toString())
+  //   ]));
+  //   print(AddMealModal().toJson());
+  //   final ref = await FirebaseFirestore.instance.collection("TodayMeal");
+  //   await ref.add(AddMealModal().toJson());
+  // }
 }
 
 class Meal_Tile extends StatelessWidget {
@@ -212,9 +251,7 @@ class Meal_Tile extends StatelessWidget {
     super.key,
     required this.style,
   });
-
   final AllDataManager style;
-
   @override
   Widget build(BuildContext context) {
     return PrimaryContainer(

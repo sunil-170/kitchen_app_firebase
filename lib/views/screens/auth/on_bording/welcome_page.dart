@@ -1,11 +1,10 @@
-import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kitchen_app/main.dart';
 import 'package:kitchen_app/res/config/App_services/app_services.dart';
-import 'package:kitchen_app/view_model/controllers/Authcontrollers/auth_controllers.dart';
+import 'package:kitchen_app/res/config/routes/routs_name.dart';
 import 'package:kitchen_app/view_model/translations.dart';
 import 'package:kitchen_app/views/components/buttons/primary_button.dart';
 import 'package:kitchen_app/views/screens/auth/auth.dart';

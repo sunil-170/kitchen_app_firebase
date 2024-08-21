@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:kitchen_app/model/customerslist_model.dart';
 import 'package:kitchen_app/model/user_model.dart';
-
 import 'package:kitchen_app/res/config/App_services/app_services.dart';
 import 'package:kitchen_app/res/config/Validator/validator.dart';
 import 'package:kitchen_app/view_model/controllers/Authcontrollers/auth_controllers.dart';
@@ -142,10 +140,7 @@ class _Sign_up_pageState extends State<Sign_up_page> {
                             if (_formKey.currentState!.validate()) {
                               await AuthControllers().createAccount(
                                   creataccount(), _passwordController.text);
-                            } else {
-                              print(
-                                  "==========================================");
-                            }
+                            } else {}
                           }),
                     ],
                   ),

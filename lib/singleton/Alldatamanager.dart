@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:kitchen_app/res/config/routes/routs_name.dart';
 import 'package:kitchen_app/res/utils/helper/color_sheet.dart';
 import 'package:kitchen_app/res/utils/helper/image_and_icon.dart';
@@ -30,4 +32,27 @@ class AllDataManager {
 
   final _texttheme = GetTextTheme();
   GetTextTheme get gettexttheme => _texttheme;
+}
+
+class Myfunctions {
+  //Generate random id **********//
+
+  static generateId({int length = 20}) {
+    String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    String id = "";
+
+    String randomChoice() {
+      Random random = Random();
+      int index = random.nextInt(characters.length);
+      return characters[index];
+    }
+
+    for (var i = 0; i < length; i++) {
+      String character = randomChoice();
+      id += character;
+    }
+
+    return id;
+  }
 }
