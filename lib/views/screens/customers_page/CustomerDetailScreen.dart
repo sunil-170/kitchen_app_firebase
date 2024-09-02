@@ -11,6 +11,7 @@ import 'package:kitchen_app/views/components/widgets/primary_appbar.dart';
 import 'package:kitchen_app/views/components/widgets/primary_container.dart';
 
 class Customerdetailscreen extends StatelessWidget {
+  
   // CustomerslistModel modeldata;
   Customerdetailscreen({super.key});
 
@@ -18,6 +19,7 @@ class Customerdetailscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     /// ------------------CUSTOMERS MODEL DATA GET ------------------------------------
     CustomerslistModel modeldata = Get.arguments;
+  // final data = provider.of<productController> (context);
 
     ///--------------------------Helpers-----------------------------
     var data = alldataManager;

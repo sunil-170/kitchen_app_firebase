@@ -1,17 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:kitchen_app/DefaultRoute.dart';
+import 'package:kitchen_app/firebase_class/firebase_data.dart';
+import 'package:kitchen_app/firebase_class/models.dart';
+import 'package:kitchen_app/firebase_class/product_form.dart';
 import 'package:kitchen_app/firebase_options.dart';
+import 'package:kitchen_app/ordermodel/order_controller.dart';
 import 'package:kitchen_app/res/config/prefs/prefs.dart';
-import 'package:kitchen_app/res/config/routes/routs.dart';
-import 'package:kitchen_app/res/config/routes/routs_name.dart';
-import 'package:kitchen_app/res/utils/Theme/themes.dart';
-import 'package:kitchen_app/res/utils/helper/app_config.dart';
-import 'package:kitchen_app/view_model/bindings/initial_bindings.dart';
-import 'package:kitchen_app/view_model/translations.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'singleton/Alldatamanager.dart';
@@ -40,22 +35,38 @@ class MyApp extends StatelessWidget {
     screenSize = MediaQuery.of(context).size;
     alldataManager = AllDataManager.instance;
     print(screenSize.width);
-    return ScreenUtilInit(
-      splitScreenMode: false,
-      designSize: Size(AppConfig.screenWidth, AppConfig.screenHeight),
-      child: GetMaterialApp(
-        initialRoute: Routesname.Splashscreen,
-        translations: Languages(),
-        locale: Languages.locale,
-        fallbackLocale: Languages.fallbacklocle,
-        initialBinding: InitialBindings(),
-        getPages: Routes.zgenerateRoutes(),
-        themeMode: preferences.getCurrentTheme().mode,
-        theme: GetThemes.lightTheme(context: context),
-        darkTheme: GetThemes.darkmode(context: context),
-        unknownRoute: GetPage(name: "/notfound", page: () => DefaultRoute()),
-        debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FirebaseData()),
+        ChangeNotifierProvider(create: (_) => OrderConntroller()),
+      ],
+      child: MaterialApp(
+        home: ProductFormView(),
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   screenSize = MediaQuery.of(context).size;
+  //   alldataManager = AllDataManager.instance;
+  //   print(screenSize.width);
+  //   return ScreenUtilInit(
+  //     splitScreenMode: false,
+  //     designSize: Size(AppConfig.screenWidth, AppConfig.screenHeight),
+  //     child: GetMaterialApp(
+  //       initialRoute: Routesname.Splashscreen,
+  //       translations: Languages(),
+  //       locale: Languages.locale,
+  //       fallbackLocale: Languages.fallbacklocle,
+  //       initialBinding: InitialBindings(),
+  //       getPages: Routes.zgenerateRoutes(),
+  //       themeMode: preferences.getCurrentTheme().mode,
+  //       theme: GetThemes.lightTheme(context: context),
+  //       darkTheme: GetThemes.darkmode(context: context),
+  //       unknownRoute: GetPage(name: "/notfound", page: () => DefaultRoute()),
+  //       debugShowCheckedModeBanner: false,
+  //     ),
+  //   );
+  // }
 }

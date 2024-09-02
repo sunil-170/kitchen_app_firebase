@@ -129,4 +129,19 @@ class AuthControllers extends GetxController {
     }
     return islogin;
   }
+
+  deletekey() async {
+    try {
+      // final users = _user_data;
+      // List coll = await firestore.collection("users").doc(user.uid)
+      await firestore
+          .collection("users")
+          .doc("r3nYGag5B3NjVcoe3HLmu8MMKfe2")
+          .update({
+        "fullname": FieldValue.arrayUnion(["ram", "Sunil"])
+      });
+      // _user_data = user;
+      // update();
+    } catch (e) {}
+  }
 }

@@ -12,13 +12,12 @@ class Todaymealcontroller extends GetxController {
   // }
 
   List<AddMealModal> _addmealdata = [];
-
   List<AddMealModal> get getmealdata => _addmealdata;
-
   addmeal(List<AddMealModal> model) {
     _addmealdata = model;
     update();
   }
+
 
   final firestore = FirebaseFirestore.instance;
 
@@ -27,11 +26,9 @@ class Todaymealcontroller extends GetxController {
       final data = await firestore.collection("meal").add(dataaa);
       final mealmodel = AddMealModal.fromJson(dataaa);
       _addmealdata.add(mealmodel);
-      print(
-          "========================================data aaga bhai ==================================party");
+      print("===== data upload===");
     } catch (e) {
-      print(
-          "=========================================================={$e}===========================");
+      print("========{$e}========");
     }
   }
 }
